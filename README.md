@@ -1,6 +1,9 @@
+# Insight Scrape
 This project is an automated attainment statistics generator for insight.scotxed.net. It is possibly only of interest to educators in secondary education in Scotland.
 
-Insight is a great resource for Secondary Scottish teachers to gain knoledge about how well their students have attained in their SQA courses. One issue, however, is that to get to some of the data there are multilple buttons and pages to navigate to collate the data to do comparisons. Some examples of questions I want to answer are "How did students in my subject attain given their SIMD?" or "Is there a gender based attainment gap in your subject" or even "How well do students with ASN attain in your subject compared to Local and National?" My approach with these programs is to minimise the time required to collate attainment data in order to maximise the time spent analysing it and finding methods to improve attainment. You should be able to create reports such as the ones shown below
+Insight is a great resource for Secondary Scottish teachers to gain knowledge about how well their students have attained in their SQA courses. One issue, however, is that to get to some of the data there are multilple buttons and pages to navigate to collate the data to do comparisons. Some examples of questions I want to answer are "How did students in my subject attain given their SIMD?" or "Is there a gender based attainment gap in your subject" or even "How well do students with ASN attain in your subject compared to Local and National?" My approach with these programs is to minimise the time required to collate attainment data in order to maximise the time spent analysing it and finding methods to improve attainment. I hate having to navigate a website with multiple clicks to get to thhe data I need, especially when I need to do it for multiple levels and subjects. 
+
+The scripts are able to generate reports such as the ones shown below:
 
 <img src="https://github.com/dcscraig/InsightScrape/blob/main/reportpage1.png" width="800">
 <img src="https://github.com/dcscraig/InsightScrape/blob/main/reportpage2.png" width="800">
