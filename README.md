@@ -20,8 +20,6 @@ Chromedriver needs to be running and once you run this script a window will appe
 
 ## createreports.py
 This script will generate reports filling in all the required data ready for you to provide some commentary and next steps. 
-
-
 # Usage
 You will need to modify the current_courses file to match the courses that you wish to generate reports for.
 
@@ -30,12 +28,6 @@ You will need to modify the current_courses file to match the courses that you w
 3. python createreports.py
 
 A word document for each subject and level with all the data provided will be placed in the reports folder.
-
-# Background
-Insight (https://insight-guides.scotxed.net/stepbystep.htm) provides Scottish schools a variety of metrics to judge attainment. The release schedule for Insight is often several months after results day. It would be useful to have an overview of results as soon as they are released and for more in depth analysis of those results to be conducted.
-
-# Requirements
-All education establishments that use SQA courses will have a coordinator that can access results for the entire establishment. Most of the analysis included here will need those results in an Excel spreadsheet.
 
 # Technical
 I have tried to comment the code to help understanding but the current documentation level leaves a lot to be desired. The report generation is a bit of a hack. If you have your own template and need some help please get in touch.
