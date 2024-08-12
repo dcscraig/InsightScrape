@@ -11,7 +11,7 @@ The scripts are able to generate reports such as the ones shown below:
 
 # Requirements
 
-Python3, Pandas, Numpy, Seaborne. Install Anaconda (https://www.anaconda.com/). To get the data from insight: selenium and chromedriver. To generate reports: python-docx. You will obviously need a login to insight and access to an educational establishment's data.
+Python3, Pandas, Numpy, Seaborne. Install Anaconda (https://www.anaconda.com/). To get the data from insight: selenium and chromedriver (https://googlechromelabs.github.io/chrome-for-testing/). To generate reports: python-docx. You will obviously need a login to insight and access to an educational establishment's data.
 
 # Main Scripts 
 
