@@ -12,10 +12,10 @@ def makeOverallGraphs():
     base = Path("downloads/tariff")
     selections = ["ALL","S4","S5","S6","S5-S6"]
     # years = [2017,2018,2019,2020,2021,2022]
-    years = [2019,2020,2021,2022,2023]
+    years = [2020,2021,2022,2023,2024]
     
     
-    with PdfPages("Tariff Difference.pdf") as pdf:
+    with PdfPages("Output/Tariff Difference.pdf") as pdf:
         
         for sel in selections:
             title = sel+" Average Tariff Diff from VC"
@@ -51,7 +51,7 @@ def makeOverallGraphs():
             makeGraph(score,percent,title)
             pdf.savefig()
             plt.close()
-    with PdfPages("Tariff Raw.pdf") as pdf:
+    with PdfPages("Output/Tariff Raw.pdf") as pdf:
         for sel in selections:
             title = sel+" Average Tariff"
             raw_data = []

@@ -70,7 +70,7 @@ def clearDownloads():
 download_folder = Path(os.getcwd()) / "tempDownloads/"
 
 session_path = "selenium-session.pkl"
-SELENIUM_URL = "http://127.0.0.1:51808"
+SELENIUM_URL = "http://127.0.0.1:50603"
 
 # starts a seleneium session
 # required chromedriver to be already running
@@ -85,7 +85,6 @@ simd_folder =  Path("downloads/tariff/simd")
 #summary filenames are SummaryLevelStage i.e Summary751
 # 75 N5, 76 Higher, 76 AH 
 # 1-S4, 2-S5, 3-S6 
-summary_folder =  Path("downloads/tariff/schoolsum")
 #ccv filenames are CCVLevelStage
 ccv_folder =  Path("downloads/tariff/ccv")
 #gender filenames
@@ -210,7 +209,10 @@ def retrieveTariffSIMD(browser,years,folder):
 	
 years = [2020,2021,2022,2023,2024]
 retrieveTariffOverview(browser,years,tariff_overview_folder)
+print("By Gender")
 retrieveTariffGender(browser,years,tariff_overview_folder / "gender")
+print("By ASN")
 retrieveTariffASN(browser,years,tariff_overview_folder / "asn")
+print("BY SIMD")
 retrieveTariffSIMD(browser,years,tariff_overview_folder / "simd")
 
