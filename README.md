@@ -11,7 +11,7 @@ The scripts are able to generate reports such as the ones shown below:
 
 # Requirements
 
-Python3, Pandas, Numpy, Seaborne. Install Anaconda (https://www.anaconda.com/). To get the data from insight: selenium and chromedriver (https://googlechromelabs.github.io/chrome-for-testing/). To generate reports: python-docx. You will obviously need a login to insight and access to an educational establishment's data.
+Python3, Pandas, Numpy, Seaborne. Install Anaconda (https://www.anaconda.com/). To get the data from insight: selenium and chromedriver (https://googlechromelabs.github.io/chrome-for-testing/ make sure it matches your version of chrome). If using anaconda pip install selenium==4.4.3 worked for me! To generate reports: python-docx. You will obviously need a login to insight and access to an educational establishment's data.
 
 # Main Scripts 
 
@@ -21,11 +21,11 @@ Chromedriver needs to be running and once you run this script a window will appe
 ## createreports.py
 This script will generate reports filling in all the required data ready for you to provide some commentary and next steps. 
 # Usage
-You will need to modify the current_courses file to match the courses that you wish to generate reports for.
+You will need to modify the current_courses file to match the courses that you wish to generate reports for ( check my school analysis for an automated method).
 
-1. run chromedriver
-2. python insight_scrape.py 
-3. python createreports.py
+1. run chromedriver (take note of port and make sure SELENIUM_URL = "http://127.0.0.1:51808" (line 215 in insight_scrape.py) matches your port   )
+2. python insight_scrape.py (depending on your school this can take an hour!)
+3. python createreports.py  (reports are generated and placed in Output/reports)
 
 A word document for each subject and level with all the data provided will be placed in the reports folder.
 
