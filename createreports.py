@@ -8,9 +8,9 @@ from coursereport import CourseReport
 
 # will create reports for all subjects in
 # current courses and save them in report folder
-report_folder = Path("downloads/reports")
+report_folder = Path("Output/Reports")
 
-cur_year = 2021
+cur_year = 2024
 #summaryfolder filenames are Summarylevelstage
 summary_folder =  Path("downloads/schoolsum")
 #ccv filenames are CCVLevelStage
@@ -199,6 +199,6 @@ for index, row in data.iterrows():
 	template = "final_template.docx"
 	print (course_name)
 	print (level)
-	temp = CourseReport(template,Path("reports"),full_summary,full_attainment,course_name,level,gender,simd,asn)
+	temp = CourseReport(template,Path("Output/Reports/"),full_summary,full_attainment,course_name,level,gender,simd,asn)
 	
 	

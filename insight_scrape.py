@@ -5,12 +5,11 @@ import pickle
 import os
 from pathlib import Path
 
-
-
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.by import By
 
 import time,shutil
 import pandas as pd
@@ -31,9 +30,6 @@ import time
 # pupil_points_group=0
 # simd_group=0
 # stage_group=0 (S4,S5,S6: 1,2,3 )
-
-
-
 
 
 # attach to a webdriver to control website
@@ -68,7 +64,8 @@ class InsightDownload:
 	def getFile(self,fname,url,not_found_msg):
 		if(not(os.path.isfile(self.folder/fname))):
 			browser.get(url)
-			temp = browser.find_elements_by_link_text("Download Data")
+			temp = browser.find_elements(By.LINK_TEXT,"Download Data")
+
 			if (len(temp)==0):
 				print(not_found_msg)
 			else:
@@ -86,16 +83,17 @@ class InsightDownload:
 
 # retrieve CCV values for all subject in school
 # for all the levels(N5,H,AH) and stages(S4,S5,S6)
-def retrieveCCV(browser,ccvfolder,download_folder):
+def retrieveCCV(browser,ccvfolder,download_folder,year):
 	levels = [75,76,77]
 	stages = [1,2,3]
-	year = "2021"
+	year = str(year)
 	# get all ccv data
 	for level in levels:
 		for stage in stages:
 			url = "https://insight.scotxed.net/lccc/agc?Course+Comparison+Measure+All+Graded+Courses+Year="+year+"&Course+Comparison+Measure+All+Graded+Courses+Confidence+Level=95&Course+Comparison+Measure+All+Graded+Courses+Data+Provider=SQA&Course+Comparison+Measure+All+Graded+Courses+SQA+CN-HS+QualLevel="+str(level)+"&Course+Comparison+Measure+All+Graded+Courses+SQA+Product+Type=CN-HS&age_group=0&asn_group=0&eal_group=0&ethnicity=0&gender=0&highest_scqf_course_to_date=0&lac_group=0&leaver_destination_group=0&pupil_points_group=0&simd_group=0&stage_group="+str(stage) 
 			browser.get(url)
-			temp = browser.find_elements_by_link_text("Download Extended Data")
+			temp = browser.find_elements(By.LINK_TEXT,"Download Extended Data")
+
 			if (len(temp)==0):
 				print("No data for", level, stage)
 			else:
@@ -110,11 +108,13 @@ def retrieveCCV(browser,ccvfolder,download_folder):
 def retrieveAttainment(browser,year,summary_folder,download_folder):			
 	levels = [75,76,77]
 	stages = [1,2,3]
+	year = str(year)
 	for level in levels:
 		for stage in stages:
 			url = "https://insight.scotxed.net/wscs?Course+Summary+Measure+Year="+str(year)+"&Course+Summary+Measure+All+Courses+Data+Provider=SQA&Course+Summary+Measure+All+Courses+SQA+CN-HS+QualLevel="+str(level)+"&Course+Summary+Measure+All+Courses+SQA+Product+Type=CN-HS&gender=0&stage_group="+str(stage)
 			browser.get(url)
-			temp = browser.find_elements_by_link_text("Download Data")
+			temp = browser.find_elements(By.LINK_TEXT,"Download Data")
+
 			if (len(temp)==0):
 				print("No data for", level, stage)
 			else:
@@ -158,7 +158,9 @@ def retrieveAttainmentbySubjectGender(downloader,subject):
 	genders = [1,2]
 	for gender in genders:
 		fname = course_code+"-"+str(level)+"-"+str(gender)+".csv"
-		url = "https://insight.scotxed.net/asgc/pre?Graded+Course+Measure+Data+Provider=SQA&Graded+Course+Measure+SQA+CN-HS+QualLevel="+str(level)+"&Graded+Course+Measure+SQA+Product+Type=CN-HS&Graded+Course+Measure+SQA+CN-HS+"+str(level)+"+Course="+course_code+"&age_group=0&asn_group=0&eal_group=0&ethnicity=0&gender="+str(gender)+"&highest_scqf_course_to_date=0&lac_group=0&leaver_destination_group=0&pupil_points_group=0&simd_group=0&stage_group=0"
+		# url = "https://insight.scotxed.net/asgc/pre?Graded+Course+Measure+Data+Provider=SQA&Graded+Course+Measure+SQA+CN-HS+QualLevel="+str(level)+"&Graded+Course+Measure+SQA+Product+Type=CN-HS&Graded+Course+Measure+SQA+CN-HS+"+str(level)+"+Course="+course_code+"&age_group=0&asn_group=0&eal_group=0&ethnicity=0&gender="+str(gender)+"&highest_scqf_course_to_date=0&lac_group=0&leaver_destination_group=0&pupil_points_group=0&simd_group=0&stage_group=0"
+		url = "https://insight.scotxed.net/asgc/pre?Graded+Course+Measure+Data+Provider=SQA&Graded+Course+Measure+SQA+CN-HS+QualLevel="+str(level)+"&Graded+Course+Measure+SQA+Product+Type=CN-HS&Graded+Course+Measure+SQA+CN-HS+"+str(level)+"+Course="+course_code+"&gender="+str(gender) 
+		
 		downloader.getFile(fname,url,"No data for "+str(level)+" "+str(gender))
 		
 def retrieveAttainmentbyASN(browser,subjects,gender_folder,download_folder):
@@ -172,7 +174,7 @@ def retrieveAttainmentbyASN(browser,subjects,gender_folder,download_folder):
 def retrieveAttainmentbySubjectASN(downloader,subject):
 	level = subject["Level"]
 	course_code = subject["Course"]
-	asns = [1]
+	asns = [1,2]
 	for asn in asns:
 		fname = course_code+"-"+str(level)+"-"+str(asn)+".csv"
 		url = "https://insight.scotxed.net/asgc/pre?Graded+Course+Measure+Data+Provider=SQA&Graded+Course+Measure+SQA+CN-HS+QualLevel="+str(level)+"&Graded+Course+Measure+SQA+Product+Type=CN-HS&Graded+Course+Measure+SQA+CN-HS+"+str(level)+"+Course="+course_code+"&age_group=0&asn_group="+str(asn)+"&eal_group=0&ethnicity=0&gender=0&highest_scqf_course_to_date=0&lac_group=0&leaver_destination_group=0&pupil_points_group=0&simd_group=0&stage_group=0"
@@ -182,9 +184,15 @@ def retrieveAttainmentbySubjectASN(downloader,subject):
 		
 def createFolders():
 	downloads = Path(os.getcwd()) / "downloads"
-	folders = ["asn","ccv","gender","schoolsum","simd"]
+	folders = ["asn","ccv","gender","schoolsum","simd","tariff"]
+	
 	for folder in folders:
 		os.makedirs(downloads/folder)
+	
+	for folder in ["asn","gender","simd"]:
+		os.makedirs(downloads/"tariff"/folder)
+
+
 def clearDownloads():
 	shutil.rmtree('downloads')
 
@@ -204,7 +212,7 @@ if (len(sys.argv)==2):
 download_folder = Path(os.getcwd()) / "tempDownloads/"
 
 session_path = "selenium-session.pkl"
-SELENIUM_URL = "http://127.0.0.1:9515"
+SELENIUM_URL = "http://127.0.0.1:51808"
 
 # starts a seleneium session
 # required chromedriver to be already running
@@ -250,27 +258,27 @@ while(browser.current_url!="https://insight.scotxed.net/"):
 	time.sleep(1)
 print("Logged in")
 
-year = 2021
+year = 2024
+print(year)
 startstart = time.time()
-retrieveCCV(browser,ccv_folder,download_folder)
+
+retrieveCCV(browser,ccv_folder,download_folder,year)
 retrieveAttainment(browser,year,summary_folder,download_folder)
 
-subjects = pd.read_csv("current_courses.csv", index_col=None)
-print(subjects)
-start = time.time()
-retrieveSimdAll(browser,subjects,simd_folder,download_folder)
-print("SIMD time: ",time.time()-start)
+# subjects = pd.read_csv("current_courses.csv", index_col=None)
+# print(subjects)
+# start = time.time()
+# retrieveSimdAll(browser,subjects,simd_folder,download_folder)
+# print("SIMD time: ",time.time()-start)
 
-start = time.time()
-retrieveAttainmentbyGenderAll(browser,subjects,gender_folder,download_folder)
-print("Gender time: ",time.time()-start)
+# start = time.time()
+# retrieveAttainmentbyGenderAll(browser,subjects,gender_folder,download_folder)
+# print("Gender time: ",time.time()-start)
 
-start = time.time()
-retrieveAttainmentbyASN(browser,subjects,asn_folder,download_folder)
-print("ASN time: ",time.time()-start)
+# start = time.time()
+# retrieveAttainmentbyASN(browser,subjects,asn_folder,download_folder,)
+# print("ASN time: ",time.time()-start)
 
-print("TOTAL TIME ",time.time()-startstart)
+# print("TOTAL TIME ",time.time()-startstart)
 
-
-
-
+#

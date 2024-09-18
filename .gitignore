@@ -1,0 +1,5 @@
+downloads/*
+Output/*
+*.pkl
+*.pyc
+!Output/Reports/readme

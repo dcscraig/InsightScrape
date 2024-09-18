@@ -1,9 +1,54 @@
 Level,Course,Course Title
-75,C844,Applications of Mathematics
 75,C804,Art and Design
-75,C832,Gaidhlig
-76,C832,Gaidhlig
-76,C833,Geography
+75,C807,Biology
+75,C813,Chemistry
+75,C816,Computing Science
+75,C821,Drama
+75,C824,English
+75,C830,French
+75,C831,Gaelic (Learners)
+75,C832,Gàidhlig
+75,C833,Geography
 75,C835,Graphic Communication
+75,C837,History
+75,C844,Applications of Mathematics
+75,C847,Mathematics
+75,C849,Modern Studies
+75,C850,Music
+75,C856,Physical Education
 75,C857,Physics
+75,C861,Practical Metalworking
 75,C862,Practical Woodworking
+75,C874,Matamataig (Mathematics)
+75,C875,Nuadh-Eolas (Modern Studies)
+75,C877,Practical Cookery
+76,C804,Art and Design
+76,C813,Chemistry
+76,C816,Computing Science
+76,C821,Drama
+76,C824,English
+76,C830,French
+76,C831,Gaelic (Learners)
+76,C832,Gàidhlig
+76,C833,Geography
+76,C835,Graphic Communication
+76,C837,History
+76,C840,Human Biology
+76,C844,Applications of Mathematics
+76,C847,Mathematics
+76,C849,Modern Studies
+76,C850,Music
+76,C855,Photography
+76,C856,Physical Education
+76,C857,Physics
+77,C805,Art and Design (Expressive)
+77,C806,Art and Design (Design)
+77,C807,Biology
+77,C813,Chemistry
+77,C821,Drama
+77,C824,English
+77,C832,Gàidhlig
+77,C833,Geography
+77,C835,Graphic Communication
+77,C847,Mathematics
+77,C857,Physics
